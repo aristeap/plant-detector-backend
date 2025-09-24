@@ -1,7 +1,10 @@
 <?php
     header("Access-Control-Allow-Origin: https://plant-detector-project.netlify.app");
-    header("Access-Control-Allow-Headers: *");
-    
+
+    // Add these additional headers for POST requests
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+
     // This line requires the Composer autoload file.
     require '../vendor/autoload.php';
 
