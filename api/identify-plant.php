@@ -74,8 +74,9 @@
             try {
                 // Use the scientific name to query the Perenual API.
                 
-                //debugging:
+                        //debugging**************************************************************************
                         error_log("Attempting Perenual API Call 1 (species-list) for: " . $scientificName);
+                        //debugging**************************************************************************
 
                 // FIRST API CALL to the perenual API (Species List)
                 $perenualSearchResponse  = $perenualClient->request('GET', "v2/species-list", [
@@ -88,15 +89,19 @@
                 // Decode the Perenual search response.
                 $perenualSearchData  = json_decode($perenualSearchResponse->getBody(), true);
                         
-                        //debugging:
+                        //debugging**************************************************************************
                         error_log("Perenual Call 1 Raw Response: " . json_encode($perenualSearchData));
+                        //debugging**************************************************************************
+
 
                 // SECOND API CALL to the perenual API (Species Details)
                 if (!empty($perenualSearchData['data'][0]['id'])) { 
                     $plantId = $perenualSearchData['data'][0]['id'];
                     
-                                error_log("Perenual Plant ID found: " . $plantId);
-                                error_log("Attempting Perenual API Call 2 (species/details) for ID: " . $plantId);
+                            //debugging**************************************************************************
+                            error_log("Perenual Plant ID found: " . $plantId);
+                            error_log("Attempting Perenual API Call 2 (species/details) for ID: " . $plantId);
+                            //debugging**************************************************************************
 
 
                     // Make the API call to the plants details based on the id:
@@ -107,22 +112,27 @@
                     ]);
                     $perenualData = json_decode($perenualDetailsResponse->getBody(), true);
 
-                                error_log("Perenual Call 2 Raw Response (Details): " . json_encode($perenualData));
-
+                    
 
                     // --- START OF NEW CODE BLOCK for THIRD Perenual API Call (Care Guides) ---
                     // Ensure $perenualData exists, has the 'care-guides' key, and it's a string
                     if ($perenualData && isset($perenualData['care-guides']) && is_string($perenualData['care-guides'])) {
                         $careGuideUrl = $perenualData['care-guides'];
                         
-                                        error_log("Perenual Care Guide URL found: " . $careGuideUrl);
-                                        error_log("Attempting Perenual API Call 3 (care-guides) for URL: " . $careGuideUrl);
+                                //debugging**************************************************************************
+                                error_log("Perenual Care Guide URL found: " . $careGuideUrl);
+                                error_log("Attempting Perenual API Call 3 (care-guides) for URL: " . $careGuideUrl);
+                                //debugging**************************************************************************
+
     
                         // THIRD API CALL to the perenual API (Care Guide List)
                         $perenualCareGuideResponse = $perenualClient->request('GET', $careGuideUrl); // Guzzle can handle full URLs
                         $perenualCareGuide = json_decode($perenualCareGuideResponse->getBody(), true);
 
-                                        error_log("Perenual Call 3 Raw Response (Care Guides): " . json_encode($perenualCareGuide));
+                                //debugging**************************************************************************
+                                error_log("Perenual Call 3 Raw Response (Care Guides): " . json_encode($perenualCareGuide));
+                                //debugging**************************************************************************
+
 
                         // Initialize descriptions to null before the loop to avoid 'undefined variable' notices
                         $wateringDescription = null;
@@ -132,7 +142,10 @@
                         // Check if care guide data and section exist
                         if ($perenualCareGuide && isset($perenualCareGuide['data'][0]['section'])) {
                             $sections = $perenualCareGuide['data'][0]['section'];
-                    error_log("Care Guide Sections: " . json_encode($sections)); // Log sections
+
+                                        //debugging**************************************************************************
+                                        error_log("Care Guide Sections: " . json_encode($sections)); // Log sections
+                                        //debugging**************************************************************************
 
                             foreach ($sections as $value) {
                                 // Ensure 'type' and 'description' keys exist in each section item
