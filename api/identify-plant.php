@@ -1,5 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: https://plant-detector-project.netlify.app");
+    header("Access-Control-Allow-Headers: *");
+    
     // This line requires the Composer autoload file.
     require '../vendor/autoload.php';
 
