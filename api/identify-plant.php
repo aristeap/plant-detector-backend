@@ -5,6 +5,9 @@
     header("Access-Control-Allow-Headers: Content-Type");
     header("Access-Control-Allow-Methods: POST, OPTIONS");
 
+    // ADD THIS LINE
+die("CORS headers successfully reached!");
+
     // This line requires the Composer autoload file.
     require '../vendor/autoload.php';
 
