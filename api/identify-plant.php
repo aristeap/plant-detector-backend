@@ -9,7 +9,7 @@
 die("CORS headers successfully reached!");
 
     // This line requires the Composer autoload file.
-    require '../vendor/autoload.php';
+    require 'vendor/autoload.php';
 
     // We tell PHP to use these Guzzle classes.
     use GuzzleHttp\Client;
