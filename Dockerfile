@@ -9,6 +9,10 @@ RUN a2enmod rewrite
 # 3. Copy all project files into the Apache web root
 COPY . /var/www/html/
 
+# --- NEW: Change Apache's DocumentRoot to the 'api' folder ---
+# The default document root is /var/www/html. We change it to /var/www/html/api
+RUN sed -i 's!/var/www/html!/var/www/html/api!g' /etc/apache2/sites-available/000-default.confS
+
 # 4. Set the working directory to the web root
 WORKDIR /var/www/html/
 
