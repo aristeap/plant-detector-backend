@@ -11,8 +11,7 @@ COPY . /var/www/html/
 
 # --- NEW: Change Apache's DocumentRoot to the 'api' folder ---
 # The default document root is /var/www/html. We change it to /var/www/html/api
-RUN sed -i 's!/var/www/html!/var/www/html/api!g' /etc/apache2/sites-available/000-default.confS
-
+RUN sed -i 's!/var/www/html!/var/www/html/api!g' /etc/apache2/sites-available/000-default.conf
 # 4. Set the working directory to the web root
 WORKDIR /var/www/html/
 
