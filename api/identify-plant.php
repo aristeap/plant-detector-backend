@@ -1,15 +1,15 @@
 <?php
-    header("Access-Control-Allow-Origin: https://plant-detector-project.netlify.app");
+//     header("Access-Control-Allow-Origin: https://plant-detector-project.netlify.app");
 
-    // Add these additional headers for POST requests
-    header("Access-Control-Allow-Headers: Content-Type");
-    header("Access-Control-Allow-Methods: POST, OPTIONS");
+//     // Add these additional headers for POST requests
+//     header("Access-Control-Allow-Headers: Content-Type");
+//     header("Access-Control-Allow-Methods: POST, OPTIONS");
 
-    // ADD THIS LINE
-die("CORS headers successfully reached!");
+//     // ADD THIS LINE
+// die("CORS headers successfully reached!");
 
     // This line requires the Composer autoload file.
-    require 'vendor/autoload.php';
+    require '../vendor/autoload.php';
 
     // We tell PHP to use these Guzzle classes.
     use GuzzleHttp\Client;
