@@ -1,0 +1,13 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# 1. Block directory listing
+Options -Indexes
+
+# 2. Skip rewrite for existing files/directories (e.g., if you add a 'docs' folder or an image)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 3. Rewrite requests like /identify-plant to /identify-plant.php
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]

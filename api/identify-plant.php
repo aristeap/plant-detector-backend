@@ -11,6 +11,27 @@
     // This line requires the Composer autoload file.
     require '../vendor/autoload.php';
 
+
+    // --- START CORS FIX --------------------------------------------------------------------
+
+    // 1. Specify the single domain allowed to access this API
+    $allowed_origin = 'https://plant-detector-project.netlify.app';
+    header("Access-Control-Allow-Origin: $allowed_origin");
+
+    // 2. Allow specific HTTP methods (like POST, GET) used by your fetch/axios calls
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+    // 3. Allow necessary headers for the request (like Content-Type)
+    header("Access-Control-Allow-Headers: Content-Type");
+
+    // Handle preflight requests (OPTIONS method) - crucial for modern browsers
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+        http_response_code(200);
+        exit();
+    }
+
+    // --- END CORS FIX --------------------------------------------------------------------
+
     // We tell PHP to use these Guzzle classes.
     use GuzzleHttp\Client;
     use GuzzleHttp\Psr7\Utils;
